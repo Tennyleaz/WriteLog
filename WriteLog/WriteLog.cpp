@@ -21,9 +21,11 @@ void WriteLog(CString szLog)
 		aFile.SeekToEnd();
 		CString Msg;
 		Msg.Format(L"%02d:%02d:%02d-%03d %s\n", sTime.wHour, sTime.wMinute, sTime.wSecond, sTime.wMilliseconds, (LPCTSTR)szLog);
-		char* pChar = new char[Msg.GetLength() + 1];
-		memset(pChar, 0x00, Msg.GetLength() + 1);
+		
 		int size_needed = WideCharToMultiByte(CP_UTF8, 0, (LPCTSTR)Msg, Msg.GetLength(), NULL, 0, NULL, NULL);
+
+		char* pChar = new char[size_needed + 1];
+		memset(pChar, 0x00, size_needed + 1);
 		int l = WideCharToMultiByte(CP_UTF8, 0, (LPCTSTR)Msg, Msg.GetLength(), pChar, size_needed, NULL, NULL);
 		aFile.Write(pChar, size_needed);
 		aFile.Close();
@@ -38,7 +40,7 @@ int main()
 {
 	WCHAR * pstr = L"ひろゆき";
 	CString cstr;
-	cstr.Format(L"pstr=%s, pstr[0]=%c\n", pstr, pstr[0]);
+	cstr.Format(L"pstr=%s, pstr[0]=%c", pstr, pstr[0]);
 	WriteLog(cstr);
 	system("pause");
 	return 0;
