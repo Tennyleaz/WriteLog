@@ -32,3 +32,10 @@
 *.app
 /WriteLog.VC.db
 /WriteLog.VC.VC.opendb
+*.log
+*.tlog
+*.pdb
+*.ilk
+.vs/WriteLog/v14/.suo
+*.idb
+*.ipch
